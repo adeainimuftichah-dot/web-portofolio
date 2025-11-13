@@ -1,0 +1,182 @@
+:root{
+  --bg: #FBF7F1;       /* krem muda */
+  --text: #222222;     /* abu-abu gelap */
+  --muted: #6B6B6B;
+  --accent: #A68C6C;   /* aksen hangat */
+  --card: rgba(34,34,34,0.04);
+  --radius: 10px;
+  --container: 1100px;
+  --gap: 1.25rem;
+  --transition: 280ms ease;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.45;
+  font-size:16px;
+}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 1rem;}
+
+.section{padding:4rem 0;}
+
+.site-header{
+  background:transparent;
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--gap);
+  padding:1rem 0;
+}
+
+.logo{
+  font-weight:700;
+  color:var(--text);
+  text-decoration:none;
+  font-size:1.05rem;
+}
+
+.main-nav ul{
+  list-style:none;
+  display:flex;
+  gap:1rem;
+  margin:0;
+  padding:0;
+}
+.main-nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:0.5rem 0.6rem;
+  border-radius:6px;
+  transition:color var(--transition), background var(--transition);
+}
+.main-nav a:hover,
+.main-nav a:focus{color:var(--text);background:var(--card)}
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:0;
+  padding:0.4rem;
+  cursor:pointer;
+}
+.hamburger{
+  display:block;
+  width:22px;
+  height:2px;
+  background:var(--text);
+  position:relative;
+  border-radius:2px;
+}
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:22px;
+  height:2px;
+  background:var(--text);
+  border-radius:2px;
+}
+.hamburger::before{top:-7px}
+.hamburger::after{top:7px}
+
+/* Hero */
+.hero{
+  display:flex;
+  align-items:center;
+  min-height:60vh;
+}
+.hero-content{max-width:65ch}
+.lead{color:var(--muted);margin-top:0.5rem}
+
+/* Buttons */
+.btn{
+  display:inline-block;
+  background:var(--text);
+  color:var(--bg);
+  padding:0.6rem 1rem;
+  border-radius:8px;
+  text-decoration:none;
+  transition:transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 6px 18px rgba(34,34,34,0.06);
+}
+.btn:hover{transform:translateY(-3px)}
+
+/* About */
+.about p{max-width:70ch;color:var(--muted)}
+
+/* Portfolio grid */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  margin-top:1.25rem;
+}
+.project-card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  padding:1.15rem;
+  border-radius:var(--radius);
+  box-shadow: 0 6px 18px rgba(34,34,34,0.04);
+}
+.project-card h3{margin-top:0;margin-bottom:0.45rem}
+.card-link{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* Contact */
+.contact-form{max-width:56ch}
+.form-row{margin-bottom:0.75rem;display:flex;flex-direction:column}
+label{font-size:0.9rem;color:var(--muted);margin-bottom:0.35rem}
+input,textarea{
+  padding:0.6rem 0.75rem;
+  border-radius:8px;
+  border:1px solid rgba(34,34,34,0.08);
+  font:inherit;
+  background:white;
+  outline:none;
+  transition:box-shadow var(--transition), border-color var(--transition);
+}
+input:focus,textarea:focus{box-shadow:0 6px 18px rgba(34,34,34,0.06);border-color:rgba(34,34,34,0.12)}
+.form-status{margin-left:0.75rem;color:var(--muted)}
+
+/* Footer */
+.site-footer{padding:2rem 0;color:var(--muted);font-size:0.95rem}
+
+/* Fade-in animation helper */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity 520ms ease, transform 520ms ease}
+.in-view{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:900px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .main-nav{display:none}
+  .nav-toggle{display:block}
+  .projects-grid{grid-template-columns:1fr}
+  .hero{min-height:52vh;padding-top:2rem;padding-bottom:2rem}
+  .site-header{padding:0 1rem}
+  /* when nav open */
+  body.nav-open .main-nav{
+    display:block;
+    position:absolute;
+    left:0;right:0;
+    top:64px;
+    background:var(--bg);
+    padding:1rem;
+    box-shadow:0 6px 18px rgba(34,34,34,0.06);
+  }
+  body.nav-open .main-nav ul{flex-direction:column;gap:0.5rem}
+}
